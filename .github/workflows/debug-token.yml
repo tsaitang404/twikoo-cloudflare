@@ -1,0 +1,20 @@
+name: Debug Token Permissions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CF token permissions
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          echo "=== verify token ==="
+          curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/user/tokens/verify" | head -c 200
+          echo ""
+          echo "=== try list workers (needs Workers Scripts Read) ==="
+          curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/7831d21cea4fc12c509aaa9ca2d050a6/workers/scripts" | head -c 200
