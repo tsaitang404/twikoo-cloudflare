@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Validate D1 migration and integrity checks
+        run: python3 scripts/test-validation.py
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:

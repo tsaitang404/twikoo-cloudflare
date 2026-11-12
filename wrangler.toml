@@ -8,6 +8,7 @@ compatibility_date = "2024-09-23"
 binding = "DB" # available in your Worker on env.DB
 database_name = "twikoo"
 database_id = "5b1042ba-4976-43ff-992a-6de8abbecd0e"
+migrations_dir = "migrations"
 
 [[r2_buckets]]
 binding = "R2"
